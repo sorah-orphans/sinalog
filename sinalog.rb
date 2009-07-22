@@ -10,4 +10,7 @@ ActiveRecord::Base.establish_connection(
 
 class Log < ActiveRecord::Base
 end
+class Comment < ActiveRecord::Base
+end
 
+###############################
