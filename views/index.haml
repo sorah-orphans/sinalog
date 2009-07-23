@@ -6,10 +6,18 @@
     %body
         %div#header
             %h1 Sinalog
+        %div#head-menu
+            %a{'href'=>'/edit'} New Post
         - logs.each do |log|
             %div.entry
                 %div.entry-title
-                    %h2{'style'=>'margin-bottom:1px'}= log.title
+                    %h2{'style'=>'margin-bottom:1px'}
+                        %a{'href'=>"/log/#{log.id}",'style'=>'color:black'}= log.title
                 %div.entry-time{'style'=>'font-size:9px;color:gray;margin-bottom:10px'}
                     ="Created-at: #{log.created_at} | Updated-at: #{log.updated_at}"
+                    %a{'href'=>"/edit/#{log.id}"} Edit
+
                 %div.entry-body= log.body
+                %div.entry-comments
+                    %div.entry-comment-head{'style'=>'color:gray;font-size:11px'}
+                        %a{'href'=>"/log/#{log.id}#c",'style'=>'color:gray'}= "コメント(#{Comment.find(:all,:conditions=>["log_id=?",log.id]).length})"

@@ -12,7 +12,7 @@
                 %input{"type"=>"text","name"=>"title","size"=>"60","value"=>entry.title}
                 %input{"type"=>"submit","value"=>"Post"}
                 %br
-                %textarea{"name"=>"body","cols"=>"60","rows"=>"20"}= entry.body
+                %textarea{"name"=>"body","cols"=>"60","rows"=>"20"}= entry.body.gsub("<br/>","\n")
                 %br
                 %input{"type"=>"submit","value"=>"Post"}
             -else

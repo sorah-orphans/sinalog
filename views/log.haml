@@ -9,7 +9,24 @@
         %div.entry
             %div.entry-title
                 %h2{'style'=>'margin-bottom:1px'}= log.title
+
             %div.entry-time{'style'=>'font-size:9px;color:gray;margin-bottom:10px'}
                 ="Created-at: #{log.created_at} | Updated-at: #{log.updated_at}"
+                %a{'href'=>"/edit/#{log.id}"} Edit
+
             %div.entry-body= log.body
+            %div.entry-comments
+                %div.entry-commment-head#c{'style'=>'color:gray;font-size:11px;border-bottom:1px solid gray'}
+                    = "コメント(#{Comment.find(:all,:conditions=>["log_id=?",log.id]).length})"
+                - Comment.find(:all,:conditions=>["log_id=?",log.id]).each do |c|
+                    %div.entry-comment
+                        %span.entry-comment-name{'style'=>'font-weight:bold'}
+                            ="#{c.name} "
+                        %span.entry-comment-body
+                            =c.body
+                %form{'method'=>'POST','action'=>"/log/#{log.id}/postc"}
+                    %input{'type'=>'text','name'=>'name','size'=>'10'}
+                    %input{'type'=>'text','name'=>'body','size'=>'60'}
+                    %input{'type'=>'submit','value'=>'Post'}
+
 
