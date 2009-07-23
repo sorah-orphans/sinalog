@@ -17,7 +17,7 @@ end
 ###############################
 
 get '/' do
-    haml :index, :locals => {:logs => Log.find(:all)}
+    haml :index, :locals => {:logs => Log.find(:all,:order => 'created_at desc')}
 end
 get '/log/:id' do |n|
     begin
@@ -55,4 +55,8 @@ post '/edit' do
         end
     end
 end
-    
+
+post '/log/:id/postc' do |n|
+    Comment.create(:log_id => n,:body => params[:body],:name => params[:name])
+    redirect '/log/'+n+'#c'
+end
