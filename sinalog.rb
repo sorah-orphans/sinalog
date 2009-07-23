@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'active_record'
+require 'haml'
 ###############################
 
 ActiveRecord::Base.establish_connection(
@@ -14,3 +15,7 @@ class Comment < ActiveRecord::Base
 end
 
 ###############################
+
+get '/' do
+    haml :index, :locals => {:logs => Log.find(:all)}
+end
