@@ -1,0 +1,25 @@
+!!! XML
+!!!
+%html
+    %head
+        %meta{ 'http-equiv' => 'content', :content => 'text/html; charset=utf-8'}
+    %body
+        %div#header
+            %h1 Sinalog - Edit
+        %form{"method"=>"post","action"=>"/edit"}
+            -if entryid
+                %input{"type"=>"hidden","name"=>"id","value"=>entryid}
+                %input{"type"=>"text","name"=>"title","size"=>"60","value"=>entry.title}
+                %input{"type"=>"submit","value"=>"Post"}
+                %br
+                %textarea{"name"=>"body","cols"=>"60","rows"=>"20"}= entry.body
+                %br
+                %input{"type"=>"submit","value"=>"Post"}
+            -else
+                %input{"type"=>"text","name"=>"title","size"=>"60"}
+                %input{"type"=>"submit","value"=>"Post"}
+                %br
+                %textarea{"name"=>"body","cols"=>"60","rows"=>"20"}
+                %br
+                %input{"type"=>"submit","value"=>"Post"}
+
